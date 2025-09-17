@@ -18,6 +18,7 @@ func TestGen_arr(t *testing.T) {
 // Проверяем что при передаче нулевого размера возвращает nil
 func TestGenArrZeroLength(t *testing.T) {
 	result := Gen_arr(0)
+	fmt.Println(result)
 
 	if result != nil {
 		t.Error("Expected empty slice, got nil")
