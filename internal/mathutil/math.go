@@ -1,9 +1,5 @@
 package mathutil
 
-import (
-	"fmt"
-)
-
 type Operator string
 
 const (
@@ -31,30 +27,26 @@ func (m Math) Calculate() (float64, string) {
 	if !m.Operator.IsValid() {
 		return 0, "Invalid operator"
 	}
-	fmt.Println(m.Operator)
 
-	var result float64
-
-	switch m.Operator {
-	case MULTIPLY:
-		result = 1.0
-	case PLUS, MINUS, DIV:
-		result = 0.0
+	if len(m.Nums) == 0 {
+		return 0, "Invalid nums"
 	}
+
+	var result float64 = m.Nums[0]
 
 	for _, num := range m.Nums {
 		switch m.Operator {
 		case MINUS:
-			result -= float64(num)
+			result -= num
 		case PLUS:
-			result += float64(num)
+			result += num
 		case MULTIPLY:
-			result *= float64(num)
+			result *= num
 		case DIV:
 			if num == 0 {
 				return 0, "Division by zero"
 			}
-			result /= float64(num)
+			result /= num
 		}
 	}
 
@@ -76,16 +68,16 @@ func (m Math) Max() float64 {
 
 func (m Math) Pow() ([]float64, []float64) {
 	n := len(m.Nums)
-	pow := make([]float64, n)
-	pow3 := make([]float64, n)
+	squares := make([]float64, n)
+	cubes := make([]float64, n)
 
 	for i := 0; i < n; i++ {
 		x := m.Nums[i]
 		if x > 0 {
-			pow[i] = x * x
-			pow3[i] = pow[i] * x
+			squares[i] = x * x
+			cubes[i] = squares[i] * x
 		}
 	}
 
-	return pow, pow3
+	return squares, cubes
 }

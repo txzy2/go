@@ -18,9 +18,9 @@ func main() {
 
 	fmt.Printf("Max num = %v\n", math_struct.Max())
 
-	pow, pow3 := math_struct.Pow()
-	fmt.Printf("Pow = %v\n", pow)
-	fmt.Printf("Pow3 = %v\n", pow3)
+	squares, cubes := math_struct.Pow()
+	fmt.Printf("squares = %v\n", squares)
+	fmt.Printf("cubes = %v\n", cubes)
 
 	arr := arr.Arr{Arr: arr.Gen_arr(10)}
 	fmt.Printf("Arr = %v\n", arr.Arr)
