@@ -8,12 +8,16 @@ import (
 )
 
 func main() {
-	math_struct := mathutil.Math{Nums: []float64{1, 2, 3}, Operator: mathutil.MULTIPLY}
+	fmt.Println("")
+	fmt.Println("[== Math ==]")
+
+	math_struct := mathutil.Math{Nums: arr.Gen_arr(10), Operator: mathutil.MINUS}
+	fmt.Printf("Nums = %v\n", math_struct.Nums)
 	calc, err := math_struct.Calculate()
 	if err != "" {
 		fmt.Println(err)
 	} else {
-		fmt.Printf("Calculate res = %v\n", calc)
+		fmt.Printf("Calculate res for MINUS = %v\n", calc)
 	}
 
 	fmt.Printf("Max num = %v\n", math_struct.Max())
@@ -21,6 +25,9 @@ func main() {
 	squares, cubes := math_struct.Pow()
 	fmt.Printf("squares = %v\n", squares)
 	fmt.Printf("cubes = %v\n", cubes)
+
+	fmt.Println("")
+	fmt.Println("[== Arrs ==]")
 
 	arr := arr.Arr{Arr: arr.Gen_arr(10)}
 	fmt.Printf("Arr = %v\n", arr.Arr)
