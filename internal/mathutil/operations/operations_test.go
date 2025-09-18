@@ -1,7 +1,7 @@
 package operations
 
 import (
-	"lab/first/internal/types"
+	"lab/first/pkg/types"
 	"testing"
 )
 

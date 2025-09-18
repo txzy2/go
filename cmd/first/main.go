@@ -20,7 +20,7 @@ func main() {
 		fmt.Printf("Error creating calculator: %v\n", err)
 		return
 	}
-	
+
 	fmt.Printf("Nums = %v\n", calculator.Nums)
 	calc, err := calculator.Calculate()
 	if err != nil {

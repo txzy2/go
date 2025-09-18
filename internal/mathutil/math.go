@@ -1,7 +1,8 @@
 package mathutil
 
 import (
-	"lab/first/internal/types"
+	"lab/first/pkg/types"
+	"lab/first/pkg/validators"
 )
 
 type Operator string
@@ -19,7 +20,7 @@ type Calculator struct {
 }
 
 func NewCalculator(nums []float64, operator Operator) (*Calculator, error) {
-	if check, err := checkLength(nums); !check {
+	if check, err := validators.CheckLength(nums); !check {
 		return nil, err
 	}
 	return &Calculator{Nums: nums, Operator: operator}, nil
@@ -33,12 +34,3 @@ func (c Calculator) Calculate() (float64, error) {
 
 	return calculator.Process(c.Nums)
 }
-
-func checkLength(nums []float64) (bool, error) {
-	if len(nums) == 0 {
-		return false, types.ErrInvalidInput
-	}
-
-	return true, nil
-}
-

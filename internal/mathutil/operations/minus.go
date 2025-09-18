@@ -1,10 +1,12 @@
 package operations
 
+import "lab/first/pkg/validators"
+
 // Реализация калькулятора для вычитания
 type Minus struct{}
 
 func (m Minus) Process(nums []float64) (float64, error) {
-	if check, err := checkBinaryOperation(nums); !check {
+	if check, err := validators.CheckBinaryOperation(nums); !check {
 		return 0, err
 	}
 

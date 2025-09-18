@@ -1,9 +1,17 @@
-package operations
+package validators
 
-import "lab/first/internal/types"
+import "lab/first/pkg/types"
+
+func CheckLength(nums []float64) (bool, error) {
+	if len(nums) == 0 {
+		return false, types.ErrInvalidInput
+	}
+
+	return true, nil
+}
 
 // checkBinaryOperation проверяет, что для бинарных операций (деление, вычитание) есть минимум 2 числа
-func checkBinaryOperation(nums []float64) (bool, error) {
+func CheckBinaryOperation(nums []float64) (bool, error) {
 	if len(nums) < 2 {
 		return false, types.ErrInvalidInput
 	}
@@ -11,7 +19,7 @@ func checkBinaryOperation(nums []float64) (bool, error) {
 }
 
 // checkUnaryOperation проверяет, что для унарных операций (сложение, умножение) есть минимум 1 число
-func checkUnaryOperation(nums []float64) (bool, error) {
+func CheckUnaryOperation(nums []float64) (bool, error) {
 	if len(nums) == 0 {
 		return false, types.ErrInvalidInput
 	}

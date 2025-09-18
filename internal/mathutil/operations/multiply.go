@@ -1,10 +1,12 @@
 package operations
 
+import "lab/first/pkg/validators"
+
 // Реализация калькулятора для умножения
 type Multiply struct{}
 
 func (m Multiply) Process(nums []float64) (float64, error) {
-	if check, err := checkUnaryOperation(nums); !check {
+	if check, err := validators.CheckUnaryOperation(nums); !check {
 		return 0, err
 	}
 

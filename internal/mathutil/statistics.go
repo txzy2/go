@@ -1,8 +1,10 @@
 package mathutil
 
+import "lab/first/pkg/validators"
+
 // Max возвращает максимальное значение из слайса чисел
 func Max(nums []float64) (float64, error) {
-	if check, err := checkLength(nums); !check {
+	if check, err := validators.CheckLength(nums); !check {
 		return 0, err
 	}
 
@@ -17,7 +19,7 @@ func Max(nums []float64) (float64, error) {
 
 // Pow возвращает квадраты и кубы всех чисел (включая отрицательные)
 func Pow(nums []float64) ([]float64, []float64, error) {
-	if check, err := checkLength(nums); !check {
+	if check, err := validators.CheckLength(nums); !check {
 		return nil, nil, err
 	}
 

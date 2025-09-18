@@ -1,14 +1,15 @@
 package operations
 
 import (
-	"lab/first/internal/types"
+	"lab/first/pkg/types"
+	"lab/first/pkg/validators"
 )
 
 // Реализация калькулятора для деления
 type Divide struct{}
 
 func (d Divide) Process(nums []float64) (float64, error) {
-	if check, err := checkBinaryOperation(nums); !check {
+	if check, err := validators.CheckBinaryOperation(nums); !check {
 		return 0, err
 	}
 
