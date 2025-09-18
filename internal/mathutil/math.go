@@ -1,87 +1,44 @@
 package mathutil
 
+import (
+	"lab/first/internal/types"
+)
+
 type Operator string
 
 const (
 	MINUS    Operator = "-"
-	PLUS     Operator = "+"
+	SUM      Operator = "+"
 	MULTIPLY Operator = "*"
-	DIV      Operator = "/"
+	DIVIDE   Operator = "/"
 )
 
-type Math struct {
+type Calculator struct {
 	Nums     []float64
 	Operator Operator
 }
 
-func NewMath(nums []float64, operator Operator) *Math {
-	return &Math{Nums: nums, Operator: operator}
+func NewCalculator(nums []float64, operator Operator) (*Calculator, error) {
+	if check, err := checkLength(nums); !check {
+		return nil, err
+	}
+	return &Calculator{Nums: nums, Operator: operator}, nil
 }
 
-func (o Operator) IsValid() bool {
-	switch o {
-	case MINUS, PLUS, MULTIPLY, DIV:
-		return true
-	default:
-		return false
+func (c Calculator) Calculate() (float64, error) {
+	calculator, exists := calculatorFactory[c.Operator]
+	if !exists {
+		return 0, types.ErrUnknownOperator
 	}
+
+	return calculator.Process(c.Nums)
 }
 
-func (m Math) Calculate() (float64, string) {
-	if !m.Operator.IsValid() {
-		return 0, "Invalid operator"
+func checkLength(nums []float64) (bool, error) {
+	if len(nums) == 0 {
+		return false, types.ErrInvalidInput
 	}
 
-	if len(m.Nums) == 0 {
-		return 0, "Invalid nums"
-	}
-
-	var result float64 = m.Nums[0]
-
-	for _, num := range m.Nums {
-		switch m.Operator {
-		case MINUS:
-			result -= num
-		case PLUS:
-			result += num
-		case MULTIPLY:
-			result *= num
-		case DIV:
-			if num == 0 {
-				return 0, "Division by zero"
-			}
-			result /= num
-		}
-	}
-
-	return result, ""
+	return true, nil
 }
 
-func (m Math) Max() float64 {
-	var max float64 = m.Nums[0]
-
-	for i := 0; i < len(m.Nums); i++ {
-		if max < m.Nums[i] {
-			max = m.Nums[i]
-		}
-	}
-
-	return max
-
-}
-
-func (m Math) Pow() ([]float64, []float64) {
-	n := len(m.Nums)
-	squares := make([]float64, n)
-	cubes := make([]float64, n)
-
-	for i := 0; i < n; i++ {
-		x := m.Nums[i]
-		if x > 0 {
-			squares[i] = x * x
-			cubes[i] = squares[i] * x
-		}
-	}
-
-	return squares, cubes
-}

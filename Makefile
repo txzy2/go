@@ -22,6 +22,6 @@ docker-run:
 br: build run
 
 # Комбинация docker-build + docker-run
-dr: docker-build docker-run
+dbr: docker-build docker-run
 
 .PHONY: test build run docker-build docker-run br dr
