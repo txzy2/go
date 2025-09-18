@@ -14,6 +14,10 @@ type Math struct {
 	Operator Operator
 }
 
+func NewMath(nums []float64, operator Operator) *Math {
+	return &Math{Nums: nums, Operator: operator}
+}
+
 func (o Operator) IsValid() bool {
 	switch o {
 	case MINUS, PLUS, MULTIPLY, DIV:

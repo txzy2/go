@@ -3,11 +3,15 @@ package arr
 import "math/rand"
 
 type Arr struct {
-	Arr []float64
+	Value []float64
+}
+
+func NewArr(Value []float64) *Arr {
+	return &Arr{Value: Value}
 }
 
 func (arr Arr) Get_len() int {
-	return len(arr.Arr)
+	return len(arr.Value)
 }
 
 func Gen_arr(len uint8) []float64 {

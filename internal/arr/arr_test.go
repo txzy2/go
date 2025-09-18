@@ -7,10 +7,10 @@ import (
 
 // Проверяем что при передаче ненулевого размера возвращает не пустой слайс
 func TestGen_arr(t *testing.T) {
-	arr := Arr{Arr: Gen_arr(10)}
+	arr := NewArr(Gen_arr(10))
 	fmt.Println(arr)
 
-	if arr.Arr == nil {
+	if arr.Value == nil {
 		t.Errorf("Expected 10, got %v", arr.Get_len())
 	}
 }

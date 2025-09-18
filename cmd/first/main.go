@@ -2,16 +2,19 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	"lab/first/internal/arr"
 	"lab/first/internal/mathutil"
 )
 
 func main() {
+	start := time.Now()
+
 	fmt.Println("")
 	fmt.Println("[== Math ==]")
 
-	math_struct := mathutil.Math{Nums: arr.Gen_arr(10), Operator: mathutil.MINUS}
+	math_struct := mathutil.NewMath(arr.Gen_arr(10), mathutil.MINUS)
 	fmt.Printf("Nums = %v\n", math_struct.Nums)
 	calc, err := math_struct.Calculate()
 	if err != "" {
@@ -29,7 +32,10 @@ func main() {
 	fmt.Println("")
 	fmt.Println("[== Arrs ==]")
 
-	arr := arr.Arr{Arr: arr.Gen_arr(10)}
-	fmt.Printf("Arr = %v\n", arr.Arr)
+	arr := arr.NewArr(arr.Gen_arr(10))
+	fmt.Printf("Arr = %v\n", arr.Value)
 	fmt.Printf("Len = %v\n", arr.Get_len())
+
+	elapsed := time.Since(start)
+	fmt.Printf("Runtime: %s\n", elapsed)
 }
